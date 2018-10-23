@@ -62,7 +62,7 @@
 
 #define REWARD_WIN  1.0f
 #define REWARD_LOSS -1.0f
-#define ALPHA 0.1f // moving average coefficient for interim reward
+#define ALPHA 0.5f // moving average coefficient for interim reward
 
 // Define Object Names
 #define WORLD_NAME "arm_world"
@@ -78,7 +78,7 @@
 #define ANIMATION_STEPS 1000
 
 // Set Debug Mode
-#define DEBUG false
+#define DEBUG true
 
 // Lock base rotation DOF (Add dof in header file if off)
 #define LOCKBASE true
@@ -601,7 +601,8 @@ void ArmPlugin::OnUpdate(const common::UpdateInfo& updateInfo)
 		
 		if(!checkGroundContact)
 		{
-			const float distGoal = 0; // compute the reward from distance to the goal
+			//const float distGoal = 0; // compute the reward from distance to the goal
+			float distGoal = BoxDistance(gripBBox, propBBox);
 
 			if(DEBUG){printf("distance('%s', '%s') = %f\n", gripper->GetName().c_str(), prop->model->GetName().c_str(), distGoal);}
 			
@@ -612,6 +613,7 @@ void ArmPlugin::OnUpdate(const common::UpdateInfo& updateInfo)
 				// compute the smoothed moving average of the delta of the distance to the goal
 				avgGoalDelta = lerp(avgGoalDelta, distDelta, ALPHA);
 				rewardHistory = avgGoalDelta; //??
+				printf("rH:%.2f\n",rewardHistory);
 				newReward     = true;	
 			}
 
