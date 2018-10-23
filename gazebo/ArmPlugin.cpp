@@ -36,18 +36,21 @@
 /
 */
 
-#define INPUT_WIDTH   256
-#define INPUT_HEIGHT  256
+// camera inputs 64x64 - no point in managing larger images
+#define INPUT_WIDTH   64
+#define INPUT_HEIGHT  64
+
+// Adam vs. RMSProp? Is torch impl. correct?
 #define OPTIMIZER "RMSprop"
 #define LEARNING_RATE 1e-2f
-#define REPLAY_MEMORY 10000
-#define BATCH_SIZE 8
+#define REPLAY_MEMORY 2000
+#define BATCH_SIZE 16
+
+// Recurrent
 #define USE_LSTM false
 #define LSTM_SIZE 32
 
-// Velocity Control? Position Control?
 #define NUM_ACTIONS (2*(DOF))
-
 
 /*
 / TODO - Define Reward Parameters
