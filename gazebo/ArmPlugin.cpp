@@ -47,7 +47,7 @@
 #define OPTIMIZER "RMSprop"
 #define LEARNING_RATE 1e-2f
 #define REPLAY_MEMORY 2000
-#define BATCH_SIZE 16
+#define BATCH_SIZE 32
 
 // Recurrent
 #define USE_LSTM false
@@ -78,7 +78,7 @@
 #define ANIMATION_STEPS 1000
 
 // Set Debug Mode
-#define DEBUG true
+#define DEBUG false
 
 // Lock base rotation DOF (Add dof in header file if off)
 #define LOCKBASE true
@@ -613,7 +613,7 @@ void ArmPlugin::OnUpdate(const common::UpdateInfo& updateInfo)
 				// compute the smoothed moving average of the delta of the distance to the goal
 				avgGoalDelta = lerp(avgGoalDelta, distDelta, ALPHA);
 				rewardHistory = avgGoalDelta; //??
-				printf("rH:%.2f\n",rewardHistory);
+				//printf("rH:%.2f\n",rewardHistory);
 				newReward     = true;	
 			}
 
