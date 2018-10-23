@@ -14,4 +14,7 @@ echo "new GAZEBO_PLUGIN_PATH=$GAZEBO_PLUGIN_PATH"
 
 echo " "
 echo "starting gazebo7 simulator"
-gazebo gazebo-arm.world --verbose
+gazebo gazebo-armless.world --verbose &
+sleep 1
+gz model --spawn-file=arm.sdf --model-name=arm
+fg
