@@ -10,6 +10,9 @@
 #include "cudaMappedMemory.h"
 #include "cudaPlanar.h"
 
+// TASK NUMBER
+#define TASK_2
+
 #define PI 3.141592653589793238462643383279502884197169f
 
 #define JOINT_MIN	-0.75f
@@ -262,10 +265,25 @@ void ArmPlugin::onCollisionMsg(ConstContactsPtr &contacts)
 
 		if (collisionCheck)
 		{
+#ifdef TASK_2
+			bool gripperCheck = (contacts->contact(i).collision2() == COLLISION_POINT);
+			if(gripperCheck){
+				rewardHistory = REWARD_WIN;
+				newReward  = true;
+				endEpisode = true;
+				return;
+			}else{
+				rewardHistory = REWARD_LOSS; //treat as loss??
+				newReward  = true;
+				endEpisode = true;
+				return;
+			}
+#else
 			rewardHistory = REWARD_WIN;
 			newReward  = true;
 			endEpisode = true;
 			return;
+#endif
 		}
 		
 	}
