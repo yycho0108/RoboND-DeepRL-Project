@@ -11,21 +11,21 @@
 #include "cudaPlanar.h"
 
 // TASK NUMBER
-#define TASK_2
+#define TASK 1
 
 #define PI 3.141592653589793238462643383279502884197169f
 
 #define JOINT_MIN	-0.75f
 #define JOINT_MAX	 2.0f
-#define JOINT_DELTA  .04f
+#define JOINT_DELTA  (5.0 * PI / 180)
 
 // Turn on velocity based control
-#define VELOCITY_CONTROL false
+#define VELOCITY_CONTROL false // disable: very unstable
 #define VELOCITY_MIN -0.2f
 #define VELOCITY_MAX  0.2f
+#define VELOCITY_DELTA 0.05f
 
 // Define DQN API Settings
-
 #define INPUT_CHANNELS 3
 #define ALLOW_RANDOM true
 #define DEBUG_DQN false
@@ -44,10 +44,10 @@
 #define INPUT_HEIGHT  64
 
 // Adam vs. RMSProp? Is torch impl. correct?
-#define OPTIMIZER "RMSprop"
+#define OPTIMIZER "Adam"
 #define LEARNING_RATE 1e-2f
 #define REPLAY_MEMORY 2000
-#define BATCH_SIZE 32
+#define BATCH_SIZE 16
 
 // Recurrent
 #define USE_LSTM false
@@ -62,7 +62,7 @@
 
 #define REWARD_WIN  1.0f
 #define REWARD_LOSS -1.0f
-#define ALPHA 0.5f // moving average coefficient for interim reward
+#define ALPHA 0.75f // moving average coefficient for interim reward
 
 // Define Object Names
 #define WORLD_NAME "arm_world"
@@ -81,7 +81,7 @@
 #define DEBUG false
 
 // Lock base rotation DOF (Add dof in header file if off)
-#define LOCKBASE true
+#define LOCKBASE false
 
 
 float lerp(float a, float b, float w){
@@ -265,7 +265,7 @@ void ArmPlugin::onCollisionMsg(ConstContactsPtr &contacts)
 
 		if (collisionCheck)
 		{
-#ifdef TASK_2
+#if (TASK == 2)
 			bool gripperCheck = (contacts->contact(i).collision2() == COLLISION_POINT);
 			if(gripperCheck){
 				rewardHistory = REWARD_WIN;
@@ -333,7 +333,8 @@ bool ArmPlugin::updateAgent()
 	/
 	*/
 	
-	float velocity = 0.0; // TODO - Set joint velocity based on whether action is even or odd.
+	// TODO - Set joint velocity based on whether action is even or odd.
+	float velocity = (action&1)? -VELOCITY_DELTA:VELOCITY_DELTA;
 
 	if( velocity < VELOCITY_MIN )
 		velocity = VELOCITY_MIN;
@@ -446,7 +447,8 @@ bool ArmPlugin::updateJoints()
 		}
 		else if( animationStep == ANIMATION_STEPS / 2 )
 		{	
-			ResetPropDynamics();
+			//ResetPropDynamics();
+			RandomizeProps();
 		}
 
 		return true;

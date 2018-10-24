@@ -127,6 +127,10 @@ void PropPlugin::Randomize()
 
 	math::Pose pose = originalPose;
 
+	//pose.pos.x = randf(0.35f, 0.45f);
+	//pose.pos.y = randf(-1.5f, 0.2f);
+	//pose.pos.z = 0.0f;
+
 	pose.pos.x = randf(0.35f, 0.45f);
 	pose.pos.y = randf(-1.5f, 0.2f);
 	pose.pos.z = 0.0f;
