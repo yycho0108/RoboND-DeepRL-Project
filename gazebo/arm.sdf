@@ -1,7 +1,7 @@
+<?xml version="1.0"?>
 <!--             -->
 <!-- ARM/GRIPPER -->
 <!--             -->
-<?xml version="1.0"?>
 <sdf version="1.4">
 <model name="arm">
 	<plugin name="ArmPlugin" filename="libgazeboArmPlugin.so" />

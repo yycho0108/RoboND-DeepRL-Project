@@ -62,7 +62,8 @@
 
 #define REWARD_WIN  1.0f
 #define REWARD_LOSS -1.0f
-#define ALPHA 0.75f // moving average coefficient for interim reward
+#define REWARD_BOOST 5.0f
+#define ALPHA 0.2f // moving average coefficient for interim reward
 
 // Define Object Names
 #define WORLD_NAME "arm_world"
@@ -614,7 +615,7 @@ void ArmPlugin::OnUpdate(const common::UpdateInfo& updateInfo)
 
 				// compute the smoothed moving average of the delta of the distance to the goal
 				avgGoalDelta = lerp(avgGoalDelta, distDelta, ALPHA);
-				rewardHistory = avgGoalDelta; //??
+				rewardHistory = REWARD_BOOST * avgGoalDelta; //??
 				//printf("rH:%.2f\n",rewardHistory);
 				newReward     = true;	
 			}

@@ -137,7 +137,7 @@ void PropPlugin::Randomize()
 	// since the base is fairly large and covers up the camera's field significantly, theta should be limited accordingly.
 
 	float theta  = randf(-0.75f,  1.0f);
-	float radius = randf(0.5f, 1.2f);
+	float radius = randf(0.8f, 1.4f);
 
 	pose.pos.x = radius * cos(theta) - 0.75; // account for .world offset (-0.75, -0.75)
 	pose.pos.y = radius * sin(theta) - 0.75;
