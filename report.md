@@ -105,6 +105,13 @@ For task 1, however, Object Collision is considered a success, so *suc* takes pr
 ## Task 1
 ![task\_1](figs/task_1.gif)
 
+Task 1 was successfully completed, as seen in the following figures:
+
+|![task\_1\_suc](figs/task_1_150.png)|![task\_1\_plot](figs/task_1_suc.png)
+|:-:|:-:|
+|Cap1|Cap2|
+
+The training 
 ## Task 2
 ![task\_2](figs/task_2.gif)
 
