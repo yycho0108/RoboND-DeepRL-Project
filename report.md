@@ -99,7 +99,7 @@ On a desktop equipped with an `Intel i7-7700K` cpu with `NVIDIA GTX1080-Ti`, the
 
 While other factors are fairly intuitive, the interim reward may not be immediately obvious; this reward corresponds to the small signals throughout the process of executing the episode that serve as indicators that positive progress is being made towards achieving the goal. This is calculated as:
 
-```C++
+```C
 float distGoal = BoxDistance(gripBBox, propBBox); // distance to goal
 float distDelta  = lastGoalDistance - distGoal; // distance "improvement"
 
