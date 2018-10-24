@@ -4,6 +4,8 @@ Udacity Robotics Software Nanodegree Term II Project 4
 
 Yoonyoung Cho, 10/23/2018 
 
+![model](figs/robot_model.png)
+
 ## Description
 
 In modern robotics, Reinforcement Learning algorithms has revealed a new horizon where challenging robotics problems could be resolved in an end-to-end manner.
@@ -112,8 +114,36 @@ Task 1 was successfully completed, as seen in the following figures:
 |Cap1|Cap2|
 
 The training 
+
 ## Task 2
-![task\_2](figs/task_2.gif)
+
+|![task\_2\_suc](figs/task_2_257.png)|![task\_2\_plot](figs/task_2_suc.png)
+|:-:|:-:|
+|Cap1|Cap2|
+
+## Challenge
+
+![challenge](figs/challenge.gif)
+
+The challenge configuration included a randomly spawned object in the simulated arena, as well as an added degree of freedom on the base joint of the the robot arm.
+
+![progress](figs/challenge_progress.png)
+
+### Randomization
+
+In order to make a more realistic model of the object manipulation scenario, the operating range of the arm was computed based on the kinematic constraints.
+
+![kinematic\_constraint](figs/KinematicConstraint.png)
+
+Accordingly, the feasible operating range was computed where both &theta;1 and &theta;2 were within the joint limits of [-0.5,2.0].
+
+Objects were spawned within the computed region where the arm was guaranteed to be able to reach, in order to avoid *impossible* scenarios.
+
+|![range](figs/range.png)|
+|:-:|
+|Fig.x: Visualization of the arm operable range; note that a small section of the default spawning area violates the kinematic constraint.|
+
+One particular detail that was considered for the training scenario was to spawn the objects where the camera could see the object without occlusion by the robot body, indicated by the cutoff line in the figure.
 
 ## Future Work
 [//]: # (Briefly discuss how you can improve your current results.)

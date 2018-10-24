@@ -32,7 +32,7 @@
 #define GAMMA 0.9f
 #define EPS_START 0.9f
 #define EPS_END 0.05f
-#define EPS_DECAY 200
+#define EPS_DECAY 400 // longer exploration
 
 /*
 / TODO - Tune the following hyperparameters
@@ -45,9 +45,9 @@
 
 // Adam vs. RMSProp? Is torch impl. correct?
 #define OPTIMIZER "Adam"
-#define LEARNING_RATE 1e-2f
-#define REPLAY_MEMORY 2000
-#define BATCH_SIZE 16
+#define LEARNING_RATE 5e-3f
+#define REPLAY_MEMORY 10000
+#define BATCH_SIZE 32
 
 // Recurrent
 #define USE_LSTM false

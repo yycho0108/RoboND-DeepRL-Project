@@ -146,7 +146,7 @@ void PropPlugin::Randomize()
 	//pose.pos.y = randf(-1.5f, 0.2f);
 	pose.pos.z = 0.0f;
 	
-	printf("prop random pos:  %f  %f  %f\n", pose.pos.x, pose.pos.y, pose.pos.z);
+	//printf("prop random pos:  %f  %f  %f\n", pose.pos.x, pose.pos.y, pose.pos.z);
 	model->SetWorldPose(pose);
 }
 
