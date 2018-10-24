@@ -83,7 +83,11 @@
 		<!--               -->
 		<model name="tube">
 			<link name="tube_link">
+
+				<pose>1.15 0.0 0 0 0 0</pose>
+				<!--
 				<pose>0.75 0.75 0 0 0 0</pose>
+				-->
 
 				<collision name="tube_collision">
 					<geometry>

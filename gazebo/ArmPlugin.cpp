@@ -12,6 +12,7 @@
 
 // TASK NUMBER
 #define TASK 1
+#define CHALLENGE false
 
 #define PI 3.141592653589793238462643383279502884197169f
 
@@ -82,8 +83,7 @@
 #define DEBUG false
 
 // Lock base rotation DOF (Add dof in header file if off)
-#define LOCKBASE false
-
+#define LOCKBASE !CHALLENGE
 
 float lerp(float a, float b, float w){
 	// linear interpolation between a,b with weight (0<=w<=1)
@@ -448,8 +448,11 @@ bool ArmPlugin::updateJoints()
 		}
 		else if( animationStep == ANIMATION_STEPS / 2 )
 		{	
-			//ResetPropDynamics();
+#if CHALLENGE
 			RandomizeProps();
+#else
+			ResetPropDynamics();
+#endif
 		}
 
 		return true;
