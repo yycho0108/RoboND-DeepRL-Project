@@ -367,7 +367,7 @@ bool ArmPlugin::updateAgent()
 	*/
 
 	int j_idx = (action / 2);
-	bool sgn = (action % 2 == 0? 1:-1); // even = inc, odd = dec
+	int sgn = ((action&1)? -1:1); // even = inc, odd = dec
 
 	float joint = ref[j_idx] + (sgn*JOINT_DELTA); // TODO - Set joint position based on whether action is even or odd.
 

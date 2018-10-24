@@ -131,8 +131,19 @@ void PropPlugin::Randomize()
 	//pose.pos.y = randf(-1.5f, 0.2f);
 	//pose.pos.z = 0.0f;
 
-	pose.pos.x = randf(0.35f, 0.45f);
-	pose.pos.y = randf(-1.5f, 0.2f);
+
+	// theta is set to be less than 1.57 since the object should at least be visible to the camera
+	// although yaw joint limits for the robots are [-0.75,2.0].
+	// since the base is fairly large and covers up the camera's field significantly, theta should be limited accordingly.
+
+	float theta  = randf(-0.75f,  1.0f);
+	float radius = randf(0.5f, 1.2f);
+
+	pose.pos.x = radius * cos(theta) - 0.75; // account for .world offset (-0.75, -0.75)
+	pose.pos.y = radius * sin(theta) - 0.75;
+
+	//pose.pos.x = randf(0.35f, 0.45f);
+	//pose.pos.y = randf(-1.5f, 0.2f);
 	pose.pos.z = 0.0f;
 	
 	printf("prop random pos:  %f  %f  %f\n", pose.pos.x, pose.pos.y, pose.pos.z);
